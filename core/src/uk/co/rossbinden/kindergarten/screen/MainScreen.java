@@ -38,7 +38,7 @@ public class MainScreen extends ScreenAdapter implements InputProcessor {
             0.0001F;
             //*/
     private static final float MAX_ZOOM = 5F;
-    public static final float SCALE = 8F;
+    public static final float SCALE = 4F;
 
     private Kindergarten game;
     private World world;
@@ -293,7 +293,7 @@ public class MainScreen extends ScreenAdapter implements InputProcessor {
         bodyDef.type = DynamicBody;
         bodyDef.position.set(x / SCALE, y / SCALE);
         FixtureDef fixtureDef = new FixtureDef();
-        fixtureDef.density = 5f;
+        fixtureDef.density = 1f;
         fixtureDef.friction = 0.5f;
         fixtureDef.restitution = 0.1f;
         Body body = world.createBody(bodyDef);
