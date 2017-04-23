@@ -57,7 +57,7 @@ public class MainScreen extends ScreenAdapter implements InputProcessor {
     private int prevMouseX;
     private int prevMouseY;
 
-    public MainScreen(Kindergarten game) {
+    public MainScreen(final Kindergarten game) {
         this.game = game;
         camera = new OrthographicCamera();
         camera.setToOrtho(false);
@@ -85,7 +85,7 @@ public class MainScreen extends ScreenAdapter implements InputProcessor {
                     if (levelIndex < levels.size - 1) {
                         levelComplete = true;
                     } else {
-                        Gdx.app.log(getClass().getName(), "WIN");
+                        game.setScreen(game.getWinScreen());
                     }
                 }
             }
@@ -125,7 +125,179 @@ public class MainScreen extends ScreenAdapter implements InputProcessor {
 
             @Override
             public void createSilhouette() {
-                silhouette = loadSilhouette("IMG_0332.PNG", 950, 1296, "IMG_0332");
+                silhouette = loadSilhouette("IMG_0340.PNG", 950, 1296, "10");
+            }
+
+            @Override
+            public Entity getSilhouette() {
+                return silhouette;
+            }
+
+            @Override
+            public void createShapes() {
+                requiredShapes = new Array<>();
+                requiredShapes.add(loadShape("IMG_0321.PNG", 100, 700, "Rect.2 11"));
+                requiredShapes.add(loadShape("IMG_0313.PNG", 200, 600, "Triangle"));
+                loadShape("IMG_0316.PNG", 500, 600, "Triangle Pink 6");
+                loadShape("IMG_0320.PNG", 0, 700, "Trap 10");
+                loadShape("IMG_0322.PNG", 200, 700, "Trap.2 12");
+                loadShape("IMG_0323.PNG", 300, 700, "Trap.3 13");
+                loadShape("IMG_0315.PNG", 400, 600, "SemiCircly Full 5");
+                loadShape("IMG_0325.PNG", 500, 700, "Bridge Half 15");
+                loadShape("IMG_0325.PNG", 500, 700, "Bridge Half 15");
+            }
+
+            @Override
+            public Array<Entity> getShapes() {
+                return requiredShapes;
+            }
+
+            @Override
+            public boolean validate() {
+                for (Entity entity : requiredShapes) {
+                    if (!collidingEntities.contains(entity, true)) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+        });
+        levels.add(new Level() {
+
+            private Entity silhouette;
+            private Array<Entity> requiredShapes;
+
+            @Override
+            public void createSilhouette() {
+                silhouette = loadSilhouette("IMG_0336.PNG", 950, 1296, "6");
+            }
+
+            @Override
+            public Entity getSilhouette() {
+                return silhouette;
+            }
+
+            @Override
+            public void createShapes() {
+                requiredShapes = new Array<>();
+                loadShape("IMG_0320.PNG", 0, 700, "Trap 10");
+                requiredShapes.add(loadShape("IMG_0321.PNG", 100, 700, "Rect.2 11"));
+                requiredShapes.add(loadShape("IMG_0316.PNG", 500, 600, "Triangle Pink 6"));
+                requiredShapes.add(loadShape("IMG_0316.PNG", 500, 600, "Triangle Pink 6"));
+                requiredShapes.add(loadShape("IMG_0318.PNG", 700, 600, "Square Orange.2 8"));
+                loadShape("IMG_0322.PNG", 200, 700, "Trap.2 12");
+                loadShape("IMG_0323.PNG", 300, 700, "Trap.3 13");
+                loadShape("IMG_0324.PNG", 400, 700, "Rect.3 14");
+            }
+
+            @Override
+            public Array<Entity> getShapes() {
+                return requiredShapes;
+            }
+
+            @Override
+            public boolean validate() {
+                for (Entity entity : requiredShapes) {
+                    if (!collidingEntities.contains(entity, true)) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+        });
+        levels.add(new Level() {
+
+            private Entity silhouette;
+            private Array<Entity> requiredShapes;
+
+            @Override
+            public void createSilhouette() {
+                silhouette = loadSilhouette("IMG_0337.PNG", 950, 1296, "7");
+            }
+
+            @Override
+            public Entity getSilhouette() {
+                return silhouette;
+            }
+
+            @Override
+            public void createShapes() {
+                requiredShapes = new Array<>();
+                requiredShapes.add(loadShape("IMG_0320.PNG", 0, 700, "Trap 10"));
+                requiredShapes.add(loadShape("IMG_0322.PNG", 200, 700, "Trap.2 12"));
+                requiredShapes.add(loadShape("IMG_0323.PNG", 300, 700, "Trap.3 13"));
+                loadShape("IMG_0316.PNG", 500, 600, "Triangle Pink 6");
+                loadShape("IMG_0313.PNG", 200, 600, "Triangle");
+            }
+
+            @Override
+            public Array<Entity> getShapes() {
+                return requiredShapes;
+            }
+
+            @Override
+            public boolean validate() {
+                for (Entity entity : requiredShapes) {
+                    if (!collidingEntities.contains(entity, true)) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+        });
+        levels.add(new Level() {
+
+            private Entity silhouette;
+            private Array<Entity> requiredShapes;
+
+            @Override
+            public void createSilhouette() {
+                silhouette = loadSilhouette("IMG_0341.PNG", 950, 1296, "11");
+            }
+
+            @Override
+            public Entity getSilhouette() {
+                return silhouette;
+            }
+
+            @Override
+            public void createShapes() {
+                requiredShapes = new Array<>();
+                requiredShapes.add(loadShape("IMG_0315.PNG", 400, 600, "SemiCircly Full 5"));
+                requiredShapes.add(loadShape("IMG_0319.PNG", 800, 600, "Semi Circle empty half 9"));
+                requiredShapes.add(loadShape("IMG_0319.PNG", 800, 600, "Semi Circle empty half 9"));
+                loadShape("IMG_0314.PNG", 300, 600, "SemiCircle Empty 4");
+                loadShape("IMG_0320.PNG", 0, 700, "Trap 10");
+                loadShape("image2.PNG", 700, 700, "image2");
+            }
+
+            @Override
+            public Array<Entity> getShapes() {
+                return requiredShapes;
+            }
+
+            @Override
+            public boolean validate() {
+                for (Entity entity : requiredShapes) {
+                    if (!collidingEntities.contains(entity, true)) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+        });
+        levels.add(new Level() {
+
+            private Entity silhouette;
+            private Array<Entity> requiredShapes;
+
+            @Override
+            public void createSilhouette() {
+                silhouette = loadSilhouette("IMG_0339.PNG", 950, 1296, "9");
             }
 
             @Override
@@ -138,12 +310,150 @@ public class MainScreen extends ScreenAdapter implements InputProcessor {
                 requiredShapes = new Array<>();
                 requiredShapes.add(loadShape("IMG_0317.PNG", 600, 600, "Circle 7"));
                 requiredShapes.add(loadShape("IMG_0317.PNG", 600, 600, "Circle 7"));
-                requiredShapes.add(loadShape("IMG_0317.PNG", 600, 600, "Circle 7"));
-                requiredShapes.add(loadShape("IMG_0321.PNG", 100, 700, "Rect.2 11"));
-                requiredShapes.add(loadShape("IMG_0316.PNG", 500, 600, "Triangle Pink 6"));
-                requiredShapes.add(loadShape("IMG_0318.PNG", 700, 600, "Square Orange.2 8"));
-                requiredShapes.add(loadShape("image3.PNG", 800, 700, "image3"));
+                requiredShapes.add(loadShape("IMG_0320.PNG", 0, 700, "Trap 10"));
+                loadShape("IMG_0322.PNG", 200, 700, "Trap.2 12");
+                loadShape("IMG_0323.PNG", 300, 700, "Trap.3 13");
+                loadShape("IMG_0315.PNG", 400, 600, "SemiCircly Full 5");
+                loadShape("IMG_0315.PNG", 400, 600, "SemiCircly Full 5");
+                loadShape("IMG_0315.PNG", 400, 600, "SemiCircly Full 5");
+                loadShape("IMG_0315.PNG", 400, 600, "SemiCircly Full 5");
+            }
+
+            @Override
+            public Array<Entity> getShapes() {
+                return requiredShapes;
+            }
+
+            @Override
+            public boolean validate() {
+                for (Entity entity : requiredShapes) {
+                    if (!collidingEntities.contains(entity, true)) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+        });
+        levels.add(new Level() {
+
+            private Entity silhouette;
+            private Array<Entity> requiredShapes;
+
+            @Override
+            public void createSilhouette() {
+                silhouette = loadSilhouette("IMG_0338.PNG", 950, 1296, "9");
+            }
+
+            @Override
+            public Entity getSilhouette() {
+                return silhouette;
+            }
+
+            @Override
+            public void createShapes() {
+                requiredShapes = new Array<>();
+                requiredShapes.add(loadShape("IMG_0325.PNG", 500, 700, "Bridge Half 15"));
+                requiredShapes.add(loadShape("IMG_0325.PNG", 500, 700, "Bridge Half 15"));
+                requiredShapes.add(loadShape("IMG_0322.PNG", 200, 700, "Trap.2 12"));
+                requiredShapes.add(loadShape("IMG_0323.PNG", 300, 700, "Trap.3 13"));
+                loadShape("IMG_0316.PNG", 500, 600, "Triangle Pink 6");
+                loadShape("IMG_0316.PNG", 500, 600, "Triangle Pink 6");
+                loadShape("IMG_0318.PNG", 700, 600, "Square Orange.2 8");
+                loadShape("IMG_0318.PNG", 700, 600, "Square Orange.2 8");
+            }
+
+            @Override
+            public Array<Entity> getShapes() {
+                return requiredShapes;
+            }
+
+            @Override
+            public boolean validate() {
+                for (Entity entity : requiredShapes) {
+                    if (!collidingEntities.contains(entity, true)) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+        });
+        levels.add(new Level() {
+
+            private Entity silhouette;
+            private Array<Entity> requiredShapes;
+
+            @Override
+            public void createSilhouette() {
+                silhouette = loadSilhouette("IMG_0334.PNG", 950, 1296, "lugflo 3");
+            }
+
+            @Override
+            public Entity getSilhouette() {
+                return silhouette;
+            }
+
+            @Override
+            public void createShapes() {
+                requiredShapes = new Array<>();
+                requiredShapes.add(loadShape("IMG_0325.PNG", 500, 700, "Bridge Half 15"));
+                requiredShapes.add(loadShape("IMG_0325.PNG", 500, 700, "Bridge Half 15"));
+                requiredShapes.add(loadShape("IMG_0314.PNG", 300, 600, "SemiCircle Empty 4"));
+                loadShape("teacup.PNG", 900, 700, "teacup");
                 loadShape("IMG_0311.PNG", 0, 600, "Square");
+                loadShape("IMG_0311.PNG", 0, 600, "Square");
+                loadShape("IMG_0318.PNG", 700, 600, "Square Orange.2 8");
+                loadShape("IMG_0318.PNG", 700, 600, "Square Orange.2 8");
+                loadShape("IMG_0315.PNG", 400, 600, "SemiCircly Full 5");
+                loadShape("IMG_0322.PNG", 200, 700, "Trap.2 12");
+                loadShape("IMG_0323.PNG", 300, 700, "Trap.3 13");
+                loadShape("IMG_0320.PNG", 0, 700, "Trap 10");
+                loadShape("IMG_0313.PNG", 200, 600, "Triangle");
+                requiredShapes.add(loadShape("image2.PNG", 700, 700, "image2"));
+            }
+
+            @Override
+            public Array<Entity> getShapes() {
+                return requiredShapes;
+            }
+
+            @Override
+            public boolean validate() {
+                for (Entity entity : requiredShapes) {
+                    if (!collidingEntities.contains(entity, true)) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+        });
+        levels.add(new Level() {
+
+            private Entity silhouette;
+            private Array<Entity> requiredShapes;
+
+            @Override
+            public void createSilhouette() {
+                silhouette = loadSilhouette("IMG_0335.PNG", 950, 1296, "5");
+            }
+
+            @Override
+            public Entity getSilhouette() {
+                return silhouette;
+            }
+
+            @Override
+            public void createShapes() {
+                requiredShapes = new Array<>();
+                requiredShapes.add(loadShape("image1.PNG", 600, 700, "image1"));
+                requiredShapes.add(loadShape("IMG_0313.PNG", 200, 600, "Triangle"));
+                requiredShapes.add(loadShape("IMG_0323.PNG", 300, 700, "Trap.3 13"));
+                requiredShapes.add(loadShape("IMG_0312.PNG", 100, 600, "rect"));
+                loadShape("IMG_0316.PNG", 500, 600, "Triangle Pink 6");
+                loadShape("IMG_0311.PNG", 0, 600, "Square");
+                loadShape("IMG_0318.PNG", 700, 600, "Square Orange.2 8");
             }
 
             @Override
@@ -219,7 +529,7 @@ public class MainScreen extends ScreenAdapter implements InputProcessor {
 
             @Override
             public void createSilhouette() {
-                silhouette = loadSilhouette("IMG_0334.PNG", 950, 1296, "lugflo 3");
+                silhouette = loadSilhouette("IMG_0332.PNG", 950, 1296, "IMG_0332");
             }
 
             @Override
@@ -230,20 +540,14 @@ public class MainScreen extends ScreenAdapter implements InputProcessor {
             @Override
             public void createShapes() {
                 requiredShapes = new Array<>();
-                requiredShapes.add(loadShape("IMG_0325.PNG", 500, 700, "Bridge Half 15"));
-                requiredShapes.add(loadShape("IMG_0325.PNG", 500, 700, "Bridge Half 15"));
-                requiredShapes.add(loadShape("IMG_0314.PNG", 300, 600, "SemiCircle Empty 4"));
-                loadShape("teacup.PNG", 900, 700, "teacup");
+                requiredShapes.add(loadShape("IMG_0317.PNG", 600, 600, "Circle 7"));
+                requiredShapes.add(loadShape("IMG_0317.PNG", 600, 600, "Circle 7"));
+                requiredShapes.add(loadShape("IMG_0317.PNG", 600, 600, "Circle 7"));
+                requiredShapes.add(loadShape("IMG_0321.PNG", 100, 700, "Rect.2 11"));
+                requiredShapes.add(loadShape("IMG_0316.PNG", 500, 600, "Triangle Pink 6"));
+                requiredShapes.add(loadShape("IMG_0318.PNG", 700, 600, "Square Orange.2 8"));
+                requiredShapes.add(loadShape("image3.PNG", 800, 700, "image3"));
                 loadShape("IMG_0311.PNG", 0, 600, "Square");
-                loadShape("IMG_0311.PNG", 0, 600, "Square");
-                loadShape("IMG_0318.PNG", 700, 600, "Square Orange.2 8");
-                loadShape("IMG_0318.PNG", 700, 600, "Square Orange.2 8");
-                loadShape("IMG_0315.PNG", 400, 600, "SemiCircly Full 5");
-                loadShape("IMG_0322.PNG", 200, 700, "Trap.2 12");
-                loadShape("IMG_0323.PNG", 300, 700, "Trap.3 13");
-                loadShape("IMG_0320.PNG", 0, 700, "Trap 10");
-                loadShape("IMG_0313.PNG", 200, 600, "Triangle");
-                requiredShapes.add(loadShape("image2.PNG", 700, 700, "image2"));
             }
 
             @Override
