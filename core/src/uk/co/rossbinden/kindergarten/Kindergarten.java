@@ -19,6 +19,7 @@ public class Kindergarten extends Game {
     @Override
     public void dispose() {
         mainScreen.dispose();
+        pauseScreen.dispose();
     }
 
     public MainScreen getMainScreen() {
