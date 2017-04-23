@@ -32,7 +32,7 @@ import static uk.co.rossbinden.kindergarten.component.ComponentMappers.TEXTURE;
 public class MainScreen extends ScreenAdapter implements InputProcessor {
 
     private static final float MIN_ZOOM =
-            /*/
+            //*/
             2.5F;
             /*/
             0.0001F;
@@ -317,7 +317,14 @@ public class MainScreen extends ScreenAdapter implements InputProcessor {
         fixtureDef.restitution = 0f;
         fixtureDef.isSensor = true;
         Body body = world.createBody(bodyDef);
+        /*/
         bodyLoader.attachFixture(body, fixtureName, fixtureDef, texture.getWidth() / SCALE);
+        /*/
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(texture.getWidth() / (2 * SCALE), texture.getHeight() / (2 * SCALE), new Vector2(x / (2 * SCALE), (y - texture.getHeight()) / (2 * SCALE)), 0);
+        fixtureDef.shape = shape;
+        body.createFixture(fixtureDef);
+        //*/
         body.setUserData(entity);
         entity.add(new BodyComponent(body));
         engine.addEntity(entity);
@@ -524,7 +531,7 @@ public class MainScreen extends ScreenAdapter implements InputProcessor {
                 TextureRegion texture = TEXTURE.get(((Entity) userData)).getTexture();
                 Vector2 offset = new Vector2(texture.getRegionWidth() / (2 * SCALE), texture.getRegionHeight() / (2 * SCALE));
                 offset.rotateRad(selection.getAngle());
-                selection.setTransform(worldPosition.x - offset.x, worldPosition.y - offset.y, selection.getAngle() + 0.1f);
+                selection.setTransform(worldPosition.x - offset.x, worldPosition.y - offset.y, selection.getAngle() + 0.2f);
             } else if (amount < 0) {
                 Vector3 worldPosition = camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0f));
                 worldPosition.scl(1 / SCALE);
@@ -532,7 +539,7 @@ public class MainScreen extends ScreenAdapter implements InputProcessor {
                 TextureRegion texture = TEXTURE.get(((Entity) userData)).getTexture();
                 Vector2 offset = new Vector2(texture.getRegionWidth() / (2 * SCALE), texture.getRegionHeight() / (2 * SCALE));
                 offset.rotateRad(selection.getAngle());
-                selection.setTransform(worldPosition.x - offset.x, worldPosition.y - offset.y, selection.getAngle() - 0.1f);
+                selection.setTransform(worldPosition.x - offset.x, worldPosition.y - offset.y, selection.getAngle() - 0.2f);
             }
         }
         return true;
